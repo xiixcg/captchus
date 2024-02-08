@@ -27,20 +27,22 @@ for json_file in json_files:
         json.dump(quick_draw, newFile)
         newFile.write('\n')
     newFile.close()
-    # pathToNewPaddedFile = str(path_to_json) + '/processed_padded/' + str(json_file)
-    # newFile = open(pathToNewFile)
-    # if os.path.exists(pathToNewPaddedFile):
-    #     os.remove(pathToNewPaddedFile)
-    # newPaddedFile = open(pathToNewPaddedFile, 'w')
-    # for line in newFile:
-    #     quick_draw = json.loads(line)
-    #     for i in range(max_stroke_for_word):
-    #         accessor = 'stroke' + str(i)
-    #         if accessor in quick_draw:
-    #             continue
-    #         quick_draw[accessor] = None
-    #     json.dump(quick_draw, newPaddedFile)
-    #     newPaddedFile.write('\n')
+    pathToNewPaddedFile = str(path_to_json) + '/processed_padded/' + str(json_file)
+    newFile = open(pathToNewFile)
+    if os.path.exists(pathToNewPaddedFile):
+        os.remove(pathToNewPaddedFile)
+    newPaddedFile = open(pathToNewPaddedFile, 'w')
+    for line in newFile:
+        quick_draw = json.loads(line)
+        for i in range(max_stroke_for_word):
+            accessorX = 'strokeX' + str(i)
+            accessorY = 'strokeY' + str(i)
+            if accessorX in quick_draw:
+                continue
+            quick_draw[accessorX] = [-1]
+            quick_draw[accessorY] = [-1]
+        json.dump(quick_draw, newPaddedFile)
+        newPaddedFile.write('\n')
 
 
         
