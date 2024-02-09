@@ -15,7 +15,9 @@ def transformJSON(line, max_strokes_count, max_stroke_length):
         return None
     # For now, we will loop to the total_stroke_count limit for padding upto it
     for i in range(max_strokes_count):
-        total_length_of_stroke = len(quick_draw['drawing'][0])
+        total_length_of_stroke = max_stroke_length
+        if i < total_stroke_count:
+            total_length_of_stroke = len(quick_draw['drawing'][i][0])
         if total_length_of_stroke > max_stroke_length:
             return None
         for j in range(max_stroke_length):
